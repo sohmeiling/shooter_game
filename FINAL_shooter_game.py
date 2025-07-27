@@ -14,18 +14,18 @@ window = display.set_mode((width, height))
 display.set_caption("Shooter Game!")
 
 # image
-heart = transform.scale(image.load("heart.png"), (30, 30))
+heart = transform.scale(image.load("images/heart.png"), (30, 30))
 
 # Background
-background = transform.scale(image.load("galaxy.jpg"), (width, height))
+background = transform.scale(image.load("images/galaxy.jpg"), (width, height))
 
 # Set music
 mixer.init()
-mixer.music.load("space.ogg")
+mixer.music.load("music/space.ogg")
 mixer.music.play()
 
 # Sound effects
-fire_sound = mixer.Sound("fire.ogg")
+fire_sound = mixer.Sound("music/fire.ogg")
 
 # Set colors
 WHITE = (255, 255, 255)
@@ -65,7 +65,7 @@ class Player(GameSprite):
         if keys_pressed[K_RIGHT] and self.rect.x < width - 80:
             self.rect.x += self.speed
     def fire(self):
-        bullet = Bullet("bullet.png", self.rect.centerx, self.rect.top, 15, 20, 10)
+        bullet = Bullet("images/bullet.png", self.rect.centerx, self.rect.top, 15, 20, 10)
         bullets.add(bullet)
 
 # Enemy class
@@ -98,7 +98,7 @@ def restart_game(full_restart=False):
     ufos.empty()
     bullets.empty()
     for i in range(1, 6):
-        ufo = Enemy("ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
+        ufo = Enemy("images/ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
         ufos.add(ufo)
     if full_restart:
         lives = 3
@@ -145,11 +145,11 @@ goal = 10 # Number of enemies to destroy to win
 lives = 3
 
 # Create sprites
-rocket = Player("rocket.png", 5, height - 100, 80, 100, 10)
+rocket = Player("images/rocket.png", 5, height - 100, 80, 100, 10)
 
 ufos = sprite.Group()
 for i in range(1, 6):
-    ufo = Enemy("ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
+    ufo = Enemy("images/ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
     ufos.add(ufo)
 
 # Unlimited bullets
@@ -205,7 +205,7 @@ while run:
             if ufo.health <= 0:
                 ufo.kill()
                 score += 1
-                ufo = Enemy("ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
+                ufo = Enemy("images/ufo.png", randint(80, width - 80), -40, 80, 50, randint(1, 2))
                 ufos.add(ufo)
 
         # Wining condition
